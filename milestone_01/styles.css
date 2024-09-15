@@ -1,0 +1,115 @@
+/* General styles */
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Larger profile picture */
+.profile-picture {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #fff;
+  margin-bottom: 20px;
+}
+
+/* left section */
+.left-container {
+  width: 40%;
+  background-color: #0d1b2a;
+  padding: 40px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.left-container h3 {
+  border-bottom: 2px solid #fff;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+/* right section (main content) */
+.right-container {
+  width: 60%;
+  padding: 40px;
+  background-color: #f8f9fa;
+  color: #2b2d42;
+}
+
+.right-container h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: #2b2d42;
+  font-weight: 700;
+}
+
+.right-container h3 {
+  font-size: 22px;
+  border-bottom: 2px solid #2b2d42;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.right-container p,
+.right-container ul {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.right-container ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+/* Hide skills section by default */
+#skills {
+  display: block;
+}
+
+/* Button */
+button {
+  background-color: #0d1b2a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #d90429;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-container,
+  .right-container {
+    width: 100%;
+  }
+}
