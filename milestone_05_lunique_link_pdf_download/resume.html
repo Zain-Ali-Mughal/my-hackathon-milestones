@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Shared Resume</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="loading-message">
+      <h2>Loading resume...</h2>
+    </div>
+
+    <div class="container" id="resume-container" style="display: none">
+      <div class="left-container">
+        <img
+          id="profile-picture"
+          alt="Profile Picture"
+          class="profile-picture"
+        />
+        <section id="objective">
+          <h3 style="color: white">Career Objective</h3>
+          <p id="career-objective"></p>
+        </section>
+        <section id="certificates">
+          <h3 style="color: white">Certifications</h3>
+          <ul id="certifications-list"></ul>
+        </section>
+      </div>
+      <div class="right-container">
+        <h1>My Resume</h1>
+        <section id="personal-info">
+          <h3 style="color: black">Personal Information</h3>
+          <p><b>Name:</b> <span id="name"></span></p>
+          <p><b>Email:</b> <a id="email" href="#"></a></p>
+          <p><b>Phone:</b> <span id="phone"></span></p>
+          <p><b>Address:</b> <span id="address"></span></p>
+        </section>
+        <section id="education">
+          <h3 style="color: black">Education</h3>
+          <ul id="education-list"></ul>
+        </section>
+        <section id="skills">
+          <h3 style="color: black">Skills</h3>
+          <ul id="skills-list"></ul>
+        </section>
+        <section id="work-experience">
+          <h3 style="color: black">Work Experience</h3>
+          <ul id="work-experience-list"></ul>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // Get username from query string
+      const params = new URLSearchParams(window.location.search);
+      const username = params.get("username");
+
+      // Retrieve data from sessionStorage using the username as the key
+      const resumeData = localStorage.getItem(username);
+
+      if (resumeData) {
+        const data = JSON.parse(resumeData);
+
+        // Hide the loading message and display the resume
+        document.getElementById("loading-message").style.display = "none";
+        document.getElementById("resume-container").style.display = "flex";
+
+        // Populate resume fields with stored data
+        document.getElementById("name").textContent = data.name;
+        document.getElementById("email").textContent = data.email;
+        document.getElementById("email").href = `mailto:${data.email}`;
+        document.getElementById("phone").textContent = data.phone;
+        document.getElementById("address").textContent = data.address;
+        document.getElementById("career-objective").textContent =
+          data.careerObjective;
+
+        // Profile picture
+        document.getElementById("profile-picture").src = data.profilePictureURL;
+
+        // Populate education, skills, work experience, certifications
+        const educationList = document.getElementById("education-list");
+        data.education.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          educationList.appendChild(li);
+        });
+
+        const skillsList = document.getElementById("skills-list");
+        data.skills.forEach((skill) => {
+          const li = document.createElement("li");
+          li.textContent = skill;
+          skillsList.appendChild(li);
+        });
+
+        const workExperienceList = document.getElementById(
+          "work-experience-list"
+        );
+        data.workExperience.forEach((exp) => {
+          const li = document.createElement("li");
+          li.textContent = exp;
+          workExperienceList.appendChild(li);
+        });
+
+        const certificationsList = document.getElementById(
+          "certifications-list"
+        );
+        data.certifications.forEach((cert) => {
+          const li = document.createElement("li");
+          li.textContent = cert;
+          certificationsList.appendChild(li);
+        });
+      } else {
+        document.getElementById("loading-message").textContent =
+          "Resume not found or session expired.";
+      }
+    </script>
+  </body>
+</html>
